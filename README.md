@@ -1,2 +1,2 @@
-# <Forte> Master Calendar
+# fortemastercalendar
 A calendar for my WoW guild lol
