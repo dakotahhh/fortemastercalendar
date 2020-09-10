@@ -3,25 +3,96 @@
 <head>
 <title> &lt;Forte&gt; Master Calendar</title>
 </head>
+<style type="text/css">
+	body
+	{
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	input
+	{
+		padding: 5px;
+		margin-top: 5px;
+	}
+	input[type=text], input[type=date]
+	{
+		border-radius: 4px;
+	}
+	input[type=submit]
+	{
+		background-color: #34c3eb;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 10px 10px;
+		cursor: pointer;
+		margin-left: 45%
+	}
+	input[type=submit]:hover
+	{
+		background-color: #34baeb;
+	}
+	label
+	{
+		margin-top:10px;
+		display: inline-block;
+	}
+	#form
+	{
+		border-radius: 4px;
+		background-color: #e6e4e1;
+		padding: 15px;
+		width: 30%;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+	@media screen and (max-width: 600px) 
+	{
+	  	input[type=submit] {
+		    width: 100%;
+		    margin-top: 0;
+  	}
+}
+</style>
 <body>
 
-<h1>Add Event hi</h1>
+<div id="form">
+	<h1 style="margin-left: 35%;">Add Event</h1>
+	<form action="mailto:dakotahreyes@gmail.com" method="post" enctype="text/plain">
+		<div style="margin-left: 25%;">	
+			<div>
+				<div>
+					<label for="name">Who Are You?</label>
+				</div>
+				<div>
+					<input type="text" id="name" name="name" placeholder="Your Name">
+				</div>
+			</div>
+			<div>
+				<div>
+					<label for="eventTitle">Event Name</label>
+				</div>
+				<div>
+					<input type="text" id="eventName" name="eventName" placeholder="Event Name">
+				</div>
+			</div>
+			<div>
+				<div>
+				<label for="event">Event Date</label>
+				</div>
+				<div>
+				<input type="date" id="event">
+				</div>
+			</div>
+		</div>
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+	<p style="text-align: center;">Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
+	</div>
+</div>
 
-<form action="mailto:dakotahreyes@gmail.com" method="post" enctype="text/plain">	
-	<label for="eventTitle">Event Name</label>
-	<br>
-	<input type="text" id="eventName" name="eventName" value="Event Name">
-	<br>
-	<br>
-	<label for="event">Event Date:</label>
-	<br>
-	<input type="date" id="event" name="Choose Date">
-	<br>
-	<br>
-	<input type="submit" value="Submit">
-</form>
-
-<p>Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
 
 
 </body>
