@@ -1,99 +1,121 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title> &lt;Forte&gt; Master Calendar</title>
-</head>
-<style type="text/css">
-	body
-	{
-		font-family: Arial, Helvetica, sans-serif;
+	<head>
+		<title> &lt;Forte&gt; Master Calendar</title>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	</head>
+	<style type="text/css">
+		body
+		{
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		input
+		{
+			padding: 5px;
+			margin-top: 5px;
+		}
+		input[type=text], input[type=date]
+		{
+			border-radius: 4px;
+		}
+		input[type=submit]
+		{
+			background-color: #34c3eb;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 10px 10px;
+			cursor: pointer;
+			margin-left: 45%
+		}
+		input[type=submit]:hover
+		{
+			background-color: #34baeb;
+		}
+		label
+		{
+			margin-top:10px;
+			display: inline-block;
+		}
+		#form
+		{
+			border-radius: 4px;
+			background-color: #e6e4e1;
+			padding: 15px;
+			width: 30%;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		@media screen and (max-width: 600px) 
+		{
+		  	input[type=submit] {
+			    width: 100%;
+			    margin-top: 0;
+	  	}
 	}
-	input
-	{
-		padding: 5px;
-		margin-top: 5px;
-	}
-	input[type=text], input[type=date]
-	{
-		border-radius: 4px;
-	}
-	input[type=submit]
-	{
-		background-color: #34c3eb;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		padding: 10px 10px;
-		cursor: pointer;
-		margin-left: 45%
-	}
-	input[type=submit]:hover
-	{
-		background-color: #34baeb;
-	}
-	label
-	{
-		margin-top:10px;
-		display: inline-block;
-	}
-	#form
-	{
-		border-radius: 4px;
-		background-color: #e6e4e1;
-		padding: 15px;
-		width: 30%;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-	}
-	@media screen and (max-width: 600px) 
-	{
-	  	input[type=submit] {
-		    width: 100%;
-		    margin-top: 0;
-  	}
-}
-</style>
-<body>
-
-<div id="form">
-	<h1 style="margin-left: 35%;">Add Event</h1>
-	<form action="mailto:dakotahreyes@gmail.com" method="post" enctype="text/plain">
-		<div style="margin-left: 25%;">	
-			<div>
-				<div>
-					<label for="name">Who Are You?</label>
+	</style>
+	<body>
+		<div id="form">
+			<h1 style="margin-left: 35%;">Add Event</h1>
+			<form action="mailto:dakotahreyes@gmail.com?subject=New Forte Event" method="post" enctype="text/plain">
+				<div style="margin-left: 25%;">	
+					<div>
+						<div>
+							<label for="name">Who Are You?</label>
+						</div>
+						<div>
+							<input type="text" id="name" name="name" placeholder="Your Name" required="true">
+						</div>
+					</div>
+					<div>
+						<div>
+							<label for="eventTitle">Event Name</label>
+						</div>
+						<div>
+							<input type="text" id="eventName" name="eventName" placeholder="Event Name" required="true">
+						</div>
+					</div>
+					<div>
+						<div>
+						<label for="event">Event Date</label>
+						</div>
+						<div>
+						<input type="text" name="datefilter" value="" />
+						</div>
+					</div>
 				</div>
-				<div>
-					<input type="text" id="name" name="name" placeholder="Your Name">
-				</div>
-			</div>
-			<div>
-				<div>
-					<label for="eventTitle">Event Name</label>
-				</div>
-				<div>
-					<input type="text" id="eventName" name="eventName" placeholder="Event Name">
-				</div>
-			</div>
-			<div>
-				<div>
-				<label for="event">Event Date</label>
-				</div>
-				<div>
-				<input type="date" id="event">
-				</div>
+				<br>
+				<input type="submit" value="Submit">
+			</form>
+			<p style="text-align: center;">Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
 			</div>
 		</div>
-		<br>
-		<input type="submit" value="Submit">
-	</form>
-	<p style="text-align: center;">Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
-	</div>
-</div>
 
+		<script type="text/javascript">
+		$(function() {
 
+		  $('input[name="datefilter"]').daterangepicker({
+		      autoUpdateInput: false,
+		      locale: {
+		          cancelLabel: 'Clear'
+		      }
+		  });
 
-</body>
+		  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+		  });
+
+		  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+		      $(this).val('');
+		  });
+
+		});
+		</script>
+
+	</body>
 </html>
