@@ -1,121 +1,90 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title> &lt;Forte&gt; Master Calendar</title>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+		<!-- CSS only -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
 	<style type="text/css">
-		body
-		{
-			font-family: Arial, Helvetica, sans-serif;
-		}
-		input
-		{
-			padding: 5px;
-			margin-top: 5px;
-		}
-		input[type=text], input[type=date]
-		{
-			border-radius: 4px;
-		}
-		input[type=submit]
-		{
-			background-color: #34c3eb;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			padding: 10px 10px;
-			cursor: pointer;
-			margin-left: 45%
-		}
-		input[type=submit]:hover
-		{
-			background-color: #34baeb;
-		}
-		label
-		{
-			margin-top:10px;
-			display: inline-block;
-		}
-		#form
-		{
-			border-radius: 4px;
-			background-color: #e6e4e1;
-			padding: 15px;
-			width: 30%;
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%,-50%);
-		}
-		@media screen and (max-width: 600px) 
-		{
-		  	input[type=submit] {
-			    width: 100%;
-			    margin-top: 0;
-	  	}
-	}
+		
 	</style>
 	<body>
-		<div id="form">
-			<h1 style="margin-left: 35%;">Add Event</h1>
-			<form action="mailto:dakotahreyes@gmail.com?subject=New Forte Event" method="post" enctype="text/plain">
-				<div style="margin-left: 25%;">	
-					<div>
-						<div>
-							<label for="name">Who Are You?</label>
-						</div>
-						<div>
-							<input type="text" id="name" name="name" placeholder="Your Name" required="true">
-						</div>
-					</div>
-					<div>
-						<div>
-							<label for="eventTitle">Event Name</label>
-						</div>
-						<div>
-							<input type="text" id="eventName" name="eventName" placeholder="Event Name" required="true">
-						</div>
-					</div>
-					<div>
-						<div>
-						<label for="event">Event Date</label>
-						</div>
-						<div>
-						<input type="text" name="datefilter" value="" />
-						</div>
-					</div>
+		<div class="container">
+			<h1>Add Event</h1>
+			<form class="form-horizontal needs-validation" novalidate id="gform" method="POST" data-email="from_email@example.com" action="https://script.google.com/macros/s/AKfycbx6bE3fuMIpok6wv1IXGtOedpx9R4r2ZtyEzc6un_PArFxJtuY6/exec">
+				<div class="form-group row">
+					<label for="name" class="col-sm-3 col-form-label">Who Are You?</label>
+					<input type="text" class="form-control col-4" id="name" name="name" placeholder="Your Name" required="true">
+					<div class="invalid-feedback">Please provide your name.</div>
 				</div>
-				<br>
-				<input type="submit" value="Submit">
+				<div class="form-group row">
+					<label for="eventTitle" class="col-sm-3 col-form-label">Event Name</label>
+					<input type="text" class="form-control col-4" id="eventName" name="eventName" placeholder="Event Name" required="true">
+					<div class="invalid-feedback">Please provide an event name.</div>	
+				</div>
+				<div class="form-group row">
+					<label for="event" class="col-sm-3 col-form-label">Event Date</label>
+					<input class="form-control col-4" type="text" name="datefilter" value="" required="true" />
+					<div class="invalid-feedback">Please provide a date/date-range.</div>
+				</div>
+			    <div class="form-group row">        
+			      <div class="col-sm-offset-2 col-sm-10">
+			        <button type="submit" class="btn btn-primary">Submit</button>
+			      </div>
+			    </div>
 			</form>
-			<p style="text-align: center;">Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
-			</div>
+			<p>Submitting this will email Duck and will be added to a <a href = "https://calendar.google.com/calendar/embed?src=u538aqmten02pge57nt1olum58%40group.calendar.google.com&ctz=America%2FDenver">visible calendar!</a></p>
 		</div>
 
 		<script type="text/javascript">
-		$(function() {
+			$(function() {
 
-		  $('input[name="datefilter"]').daterangepicker({
-		      autoUpdateInput: false,
-		      locale: {
-		          cancelLabel: 'Clear'
-		      }
-		  });
+			  $('input[name="datefilter"]').daterangepicker({
+			      autoUpdateInput: false,
+			      locale: {
+			          cancelLabel: 'Clear'
+			      }
+			  });
 
-		  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-		      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-		  });
+			  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+			      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			  });
 
-		  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-		      $(this).val('');
-		  });
+			  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+			      $(this).val('');
+			  });
 
-		});
+			});
+			// Example starter JavaScript for disabling form submissions if there are invalid fields
+			(function() {
+			  'use strict';
+			  window.addEventListener('load', function() {
+			    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+			    var forms = document.getElementsByClassName('needs-validation');
+			    // Loop over them and prevent submission
+			    var validation = Array.prototype.filter.call(forms, function(form) {
+			      form.addEventListener('submit', function(event) {
+			        if (form.checkValidity() === false) {
+			          event.preventDefault();
+			          event.stopPropagation();
+			        }
+			        form.classList.add('was-validated');
+			      }, false);
+			    });
+			  }, false);
+			})();
 		</script>
+		<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
+        <!-- JS, Popper.js, and jQuery -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 	</body>
 </html>
