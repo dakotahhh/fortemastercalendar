@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title> &lt;Forte&gt; Master Calendar</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 		<!-- CSS only -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
@@ -16,7 +16,7 @@
 	</style>
 	<body>
 		<div class="container">
-			<h1>Add Event</h1>
+			<h2>Add Event</h2>
 			<form class="form-horizontal needs-validation" novalidate id="gform" method="POST" data-email="from_email@example.com" action="https://script.google.com/macros/s/AKfycbx6bE3fuMIpok6wv1IXGtOedpx9R4r2ZtyEzc6un_PArFxJtuY6/exec">
 				<div class="form-group row">
 					<label for="name" class="col-sm-3 col-form-label">Who Are You?</label>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="form-group row">
 					<label for="event" class="col-sm-3 col-form-label">Event Date</label>
-					<input class="form-control col-4" type="text" name="datefilter" value="" required="true" />
+					<input type="text" class="form-control col-4" name="daterange" />
 					<div class="invalid-feedback">Please provide a date/date-range.</div>
 				</div>
 			    <div class="form-group row">        
@@ -43,24 +43,7 @@
 		</div>
 
 		<script type="text/javascript">
-			$(function() {
-
-			  $('input[name="datefilter"]').daterangepicker({
-			      autoUpdateInput: false,
-			      locale: {
-			          cancelLabel: 'Clear'
-			      }
-			  });
-
-			  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-			      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-			  });
-
-			  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-			      $(this).val('');
-			  });
-
-			});
+			 $('input[name="daterange"]').daterangepicker();
 			// Example starter JavaScript for disabling form submissions if there are invalid fields
 			(function() {
 			  'use strict';
